@@ -1,9 +1,10 @@
 import axios from "axios";
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const getAllOrders = createAsyncThunk('order/getAllOrders' , async(_ , {rejectWithValue})=>{
     try {
-        const {data} = await axios.get(`/api/admin/orders`)
+        const {data} = await axios.get(`${API_URL}/api/admin/orders`)
         return data
     }
      catch (error) {
@@ -15,7 +16,7 @@ export const getAllOrders = createAsyncThunk('order/getAllOrders' , async(_ , {r
 //create new order
 export const createNewOrder = createAsyncThunk('order/createNewOrder' , async(orderDetails , {rejectWithValue})=>{
     try {
-        const {data} = await axios.post('/api/new/order' , orderDetails)
+        const {data} = await axios.post(`${API_URL}/api/new/order` , orderDetails)
         console.log(data)
         return data
     }
@@ -27,7 +28,7 @@ export const createNewOrder = createAsyncThunk('order/createNewOrder' , async(or
 //get orders
 export const getOrders = createAsyncThunk('order/getOrders' , async(_,{rejectWithValue})=>{
     try{
-        const {data} = await axios.get('/api/orders')
+        const {data} = await axios.get(`${API_URL}/api/orders`)
         return data
     }
     catch(error){
@@ -38,7 +39,7 @@ export const getOrders = createAsyncThunk('order/getOrders' , async(_,{rejectWit
 
 export const getMyOrderById = createAsyncThunk("order/getMyOrderById", async (id, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get(`/api/order/${id}`);
+            const { data } = await axios.get(`${API_URL}/api/order/${id}`);
             return data;
         }
         catch (error) {

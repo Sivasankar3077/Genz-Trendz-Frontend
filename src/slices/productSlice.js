@@ -1,9 +1,11 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const getProducts = createAsyncThunk("product/getProduct" , async({search ='' , page=1 , category=''} = {}, {rejectWithValue})=>{
     try {
-        let link = `/api/products?page=${page}`;
+        let link = `${API_URL}/api/products?page=${page}`;
         if(search && search.trim() !== ''){
             link+= `&search=${encodeURIComponent(search)}`
         }
@@ -24,7 +26,7 @@ export const getProducts = createAsyncThunk("product/getProduct" , async({search
 
 export const getProductDetails = createAsyncThunk('product/getProductDetails' , async(id , {rejectWithValue})=>{
     try {
-        const link = `/api/products/${id}`;
+        const link = `${API_URL}/api/products/${id}`;
         const {data} = await axios.get(link);
         return data;
     }
@@ -37,7 +39,7 @@ export const getProductDetails = createAsyncThunk('product/getProductDetails' , 
 //create product by admin
 export const createProductByAdmin = createAsyncThunk('product/createProduct' , async(productData , {rejectWithValue})=>{
     try {
-        const link = `/api/admin/product/create`;
+        const link = `${API_URL}/api/admin/product/create`;
         const {data} = await axios.post(link , productData , {withCredentials: true})
         return data;
     }
@@ -50,7 +52,7 @@ export const createProductByAdmin = createAsyncThunk('product/createProduct' , a
 //delte prduct by adminn
 export const deleteProductByAdmin = createAsyncThunk('product/deleteProduct' , async({id} , {rejectWithValue})=>{
     try {
-        const {data} = await axios.delete(`/api/admin/product/${id}`);
+        const {data} = await axios.delete(`${API_URL}/api/admin/product/${id}`);
         return data;
     }
      catch (error) {
@@ -61,7 +63,7 @@ export const deleteProductByAdmin = createAsyncThunk('product/deleteProduct' , a
 
 export const updateProductByAdmin = createAsyncThunk('product/updateProduct' , async ({ id , productData} , {rejectWithValue})=>{
     try {
-        const {data} = await axios.put(`/api/admin/product/${id}` , productData)
+        const {data} = await axios.put(`${API_URL}/api/admin/product/${id}` , productData)
         return data
     }
      catch (error) {

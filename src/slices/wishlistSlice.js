@@ -1,11 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 const getErrorMessage = (error, fallback) => error.response?.data?.msg || error.response?.data?.message || fallback;
 
 export const getWishlist = createAsyncThunk('wishlist/getWishlist', async (_, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get('/api/auth/wishlist', { withCredentials: true });
+    const { data } = await axios.get(`${API_URL}/api/auth/wishlist`, { withCredentials: true });
     return data.wishlist || [];
   } catch (error) {
     return rejectWithValue(getErrorMessage(error, 'Could not load wishlist'));
@@ -14,7 +17,7 @@ export const getWishlist = createAsyncThunk('wishlist/getWishlist', async (_, { 
 
 export const addToWishlist = createAsyncThunk('wishlist/add', async (productId, { rejectWithValue }) => {
   try {
-    const { data } = await axios.post(`/api/auth/wishlist/${productId}`, {}, { withCredentials: true });
+    const { data } = await axios.post(`${API_URL}/api/auth/wishlist/${productId}`, {}, { withCredentials: true });
     return { productId, wishlist: data.wishlist || [], message: data.msg || 'Added to wishlist' };
   } catch (error) {
     return rejectWithValue(getErrorMessage(error, 'Could not add product to wishlist'));
@@ -23,7 +26,7 @@ export const addToWishlist = createAsyncThunk('wishlist/add', async (productId, 
 
 export const removeFromWishlist = createAsyncThunk('wishlist/remove', async (productId, { rejectWithValue }) => {
   try {
-    const { data } = await axios.delete(`/api/auth/wishlist/${productId}`, { withCredentials: true });
+    const { data } = await axios.delete(`${API_URL}/api/auth/wishlist/${productId}`, { withCredentials: true });
     return { productId, wishlist: data.wishlist || [], message: data.msg || 'Removed from wishlist' };
   } catch (error) {
     return rejectWithValue(getErrorMessage(error, 'Could not remove product from wishlist'));

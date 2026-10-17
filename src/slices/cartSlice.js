@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const addtoCart = createAsyncThunk('cart/addItem' , async({id , quantity , isCartPage} , {rejectWithValue})=>{
     try{
-        const {data} = await axios.get(`/api/products/${id}`);
+        const {data} = await axios.get(`${API_URL}/api/products/${id}`);
         const cartProduct = {
             product : data?.product._id,
             name : data?.product?.name,
