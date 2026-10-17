@@ -17,10 +17,10 @@ import Cart from './pages/Cart.jsx'
 import ProtectedRoute from './components/ProtectedRoutes.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
 import AdminLayout from './Layout/AdminLayout.jsx'
-import AdminProducts from "./pages/admin/AdminProducts";
-import AdminOrders from "./pages/admin/AdminOrders";
-import AdminUsers from "./pages/admin/AdminUsers";
-import AdminSettings from "./pages/admin/AdminSettings";
+import AdminProducts from "./pages/admin/AdminProducts.jsx";
+import AdminOrders from "./pages/admin/AdminOrders.jsx";
+import AdminUsers from "./pages/admin/AdminUsers.jsx";
+import AdminSettings from "./pages/admin/AdminSettings.jsx";
 import AddProduct from "./pages/admin/AddProduct.jsx";
 import EditProduct from './components/admin/EditProduct.jsx'
 import AdminRoute from './components/AdminRoute.jsx'
