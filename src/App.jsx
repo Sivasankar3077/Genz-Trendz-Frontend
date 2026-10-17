@@ -16,7 +16,7 @@ import ResetPassword from './pages/ResetPassword.jsx'
 import Cart from './pages/Cart.jsx'
 import ProtectedRoute from './components/ProtectedRoutes.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
-import AdminLayout from './Layout/AdminLayout.jsx'
+import AdminLayout from './layout/AdminLayout.jsx'
 import AdminProducts from "./pages/admin/AdminProducts.jsx";
 import AdminOrders from "./pages/admin/AdminOrders.jsx";
 import AdminUsers from "./pages/admin/AdminUsers.jsx";
